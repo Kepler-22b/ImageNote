@@ -4,6 +4,8 @@ namespace Bookkeeper\ManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Request;
+use Bookkeeper\ManagerBundle\Entity\Book;
+use Bookkeeper\ManagerBundle\Form\BookType;
 
 class BookController extends Controller
 {
@@ -22,7 +24,17 @@ class BookController extends Controller
 
     public function newAction()
     {
-        return $this->render('BookkeeperManagerBundle:Book:new.html.twig');
+        $book = new Book();
+
+        $form = $this->createForm('Bookkeeper\ManagerBundle\Form\BookType', $book, [
+            'action' => $this->generateUrl('book_create'),
+            'method' => 'POST'
+        ]);
+        $form->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', ['label' => 'Create Book']);
+
+        return $this->render('BookkeeperManagerBundle:Book:new.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     public function createAction(Request $request)
