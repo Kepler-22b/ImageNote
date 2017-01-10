@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/symfony-doc.loc.iml" filepath="$PROJECT_DIR$/.idea/symfony-doc.loc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../idoc.loc/.idea/idoc.loc.iml" filepath="$PROJECT_DIR$/../idoc.loc/.idea/idoc.loc.iml" />
     </modules>
   </component>
 </project>
