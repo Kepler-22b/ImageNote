@@ -1,1 +1,7 @@
-<h1>Show page number {{ id }}</h1>
+<h1>Book #{{ book.id }} - {{ book.title }}</h1>
+<h3>Pages: {{ book.pages }}</h3>
+<p><strong>Description</strong><br>{{ book.description }}</p>
+
+<ul>
+  <li><a href="{{ path('book') }}">BookManager</a></li>
+</ul>

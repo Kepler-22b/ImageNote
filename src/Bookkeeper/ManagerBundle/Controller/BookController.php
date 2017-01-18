@@ -18,8 +18,11 @@ class BookController extends Controller
 
     public function showAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $book = $em->getRepository('BookkeeperManagerBundle:Book')->find($id);
+
         return $this->render('BookkeeperManagerBundle:Book:show.html.twig', [
-            'id' => $id
+            'book' => $book
         ]);
     }
 
@@ -57,7 +60,9 @@ class BookController extends Controller
 
             $this->get('session')->getFlashBag()->add('msg', 'Your book has been created');
 
-            return $this->redirect($this->generateUrl('book_new'));
+            return $this->redirect($this->generateUrl('book_show', [
+                'id' => $book->getId()
+            ]));
         }
 
         $this->get('session')->getFlashBag()->add('msg', 'Something went wrong');
