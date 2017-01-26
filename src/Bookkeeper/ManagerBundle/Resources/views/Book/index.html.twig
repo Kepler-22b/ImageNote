@@ -1,1 +1,11 @@
-<h1>Index Page</h1>
+<h1>All books</h1>
+<ul>
+    <li><a href="{{ path('book_new') }}">Create new book</a></li>
+</ul>
+<hr>
+<dl>
+{% for book in books %}
+    <dt><strong> #{{ book.id }} - <a href="{{ path('book_show', {'id': book.id}) }}">{{ book.title }}</a></strong> <i>Pages: {{ book.pages }}</i></dt>
+    <dd><p>{{ book.description }}</p></dd>
+{% endfor %}
+</dl>

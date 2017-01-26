@@ -13,7 +13,10 @@ class BookController extends Controller
 
     public function indexAction()
     {
-        return $this->render('BookkeeperManagerBundle:Book:index.html.twig');
+    	$em = $this->getDoctrine()->getManager();
+    	$books = $em->getRepository('BookkeeperManagerBundle:Book')->findAll();
+
+        return $this->render('BookkeeperManagerBundle:Book:index.html.twig', ['books' => $books]);
     }
 
     public function showAction($id)
