@@ -2,6 +2,11 @@
 
 {% block body %}
     <h1>Create New Book</h1>
+    <ul>
+        <li><a href="{{ path('book') }}">BookManager</a></li>
+        <li>Create new book</li>
+    </ul>
+    <hr>
 
     {{ form(form, {attr: {novalidate: 'novalidate'}}) }}
 {% endblock %}

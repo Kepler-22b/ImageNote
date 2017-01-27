@@ -1,7 +1,8 @@
 <h1>Book #{{ book.id }} - {{ book.title }}</h1>
+<ul>
+    <li><a href="{{ path('book') }}">BookManager</a></li>
+    <li><a href="{{ path('book_new') }}">Create new book</a></li>
+</ul>
+<hr>
 <h3>Pages: {{ book.pages }}</h3>
 <p><strong>Description</strong><br>{{ book.description }}</p>
-
-<ul>
-  <li><a href="{{ path('book') }}">BookManager</a></li>
-</ul>
