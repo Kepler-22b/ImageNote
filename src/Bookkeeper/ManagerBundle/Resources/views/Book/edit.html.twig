@@ -1,1 +1,9 @@
-<h1>Edit Page</h1>
+<h1>Edit Book</h1>
+<ul>
+    <li><a href="{{ path('book') }}">BookManager</a></li>
+    <li><a href="{{ path('book_new') }}">Create new book</a></li>
+    <li><a href="{{ path('book_show', { 'id': book.id }) }}">Show this book</a></li>
+</ul>
+<hr>
+
+{{ form(form, {attr: {novalidate: 'novalidate'}}) }}

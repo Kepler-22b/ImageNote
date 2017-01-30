@@ -2,6 +2,7 @@
 <ul>
     <li><a href="{{ path('book') }}">BookManager</a></li>
     <li><a href="{{ path('book_new') }}">Create new book</a></li>
+    <li><a href="{{ path('book_edit', { 'id': book.id }) }}">Edit book</a></li>
 </ul>
 <hr>
 <h3>Pages: {{ book.pages }}</h3>
