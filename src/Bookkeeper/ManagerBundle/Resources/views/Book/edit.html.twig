@@ -1,3 +1,7 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
 <h1>Edit Book</h1>
 <ul>
     <li><a href="{{ path('book') }}">BookManager</a></li>
@@ -7,3 +11,5 @@
 <hr>
 
 {{ form(form, {attr: {novalidate: 'novalidate'}}) }}
+
+{% endblock %}
