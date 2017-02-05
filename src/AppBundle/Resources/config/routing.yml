@@ -1,0 +1,11 @@
+homepage:
+  path: /
+  defaults: {_controller: AppBundle:Default:index}
+
+posts:
+  path: /posts/
+  defaults: { _controller: AppBundle:Note:getNotes}
+
+post:
+  path: /posts/{id}
+  defaults: { _controller: AppBundle:Note:getNote}

@@ -1,0 +1,9 @@
+{% extends 'AppBundle::index.html.twig' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block content %}
+    This is post # {{ post.id }} with title {{ post.title }}
+{% endblock %}
