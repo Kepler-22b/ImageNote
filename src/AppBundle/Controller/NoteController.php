@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Note;
 
 class NoteController extends Controller {
 
