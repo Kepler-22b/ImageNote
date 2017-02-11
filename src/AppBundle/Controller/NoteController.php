@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Note;
+use AppBundle\Form\NoteType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class NoteController extends Controller {
 
@@ -49,6 +51,15 @@ class NoteController extends Controller {
 	}
 
 	public function createNoteAction () {
-	    return $this->render('AppBundle::create_post.html.twig');
+
+	    $form = $this->createForm(NoteType::class, new Note(), [
+	        'action' => $this->generateUrl('post_create'),
+            'method' => 'post'
+        ]);
+        $form->add('submit', SubmitType::class, ['label' => 'Create']);
+
+	    return $this->render('AppBundle::create_post.html.twig', [
+	        'form' => $form->createView()
+        ]);
     }
 }
