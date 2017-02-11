@@ -47,4 +47,8 @@ class NoteController extends Controller {
 
 		return $this->render( 'AppBundle::posts.html.twig', [ 'posts' => $posts ] );
 	}
+
+	public function createNoteAction () {
+	    return $this->render('AppBundle::create_post.html.twig');
+    }
 }
