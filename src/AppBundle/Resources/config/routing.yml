@@ -13,3 +13,4 @@ post:
 post_create:
   path: /create
   defaults: { _controller: AppBundle:Note:createNote }
+  requirements: { _method: post}

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Note;
 use AppBundle\Form\NoteType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class NoteController extends Controller {
@@ -50,16 +51,42 @@ class NoteController extends Controller {
 		return $this->render( 'AppBundle::posts.html.twig', [ 'posts' => $posts ] );
 	}
 
-	public function createNoteAction () {
+	public function createNoteAction( Request $request ) {
 
-	    $form = $this->createForm(NoteType::class, new Note(), [
-	        'action' => $this->generateUrl('post_create'),
-            'method' => 'post'
-        ]);
-        $form->add('submit', SubmitType::class, ['label' => 'Create']);
+		$note = new Note();
 
-	    return $this->render('AppBundle::create_post.html.twig', [
-	        'form' => $form->createView()
-        ]);
-    }
+		$form = $this->createForm( NoteType::class, $note, [
+			'action' => $this->generateUrl( 'post_create' ),
+			'method' => 'post'
+		] );
+		$form->add( 'submit', SubmitType::class, [ 'label' => 'Create' ] );
+
+		$form->handleRequest( $request );
+
+		if ( $form->isSubmitted() ) {
+			if ( $form->isValid() ) {
+				$note->setDateCreated( new \DateTime() );
+
+				$em = $this->getDoctrine()->getManager();
+				$em->persist( $note );
+				$em->flush();
+
+				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Your note has been created' );
+
+				return $this->redirect( $this->generateUrl( 'post_create') );
+
+			} else {
+				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Something went wrong' );
+			}
+		}
+
+
+		return $this->render( 'AppBundle::create_post.html.twig', [
+			'form' => $form->createView()
+		] );
+	}
+
+	private function _noteFormHandler() {
+
+	}
 }
