@@ -7,6 +7,8 @@ use AppBundle\Entity\Note;
 use AppBundle\Form\NoteType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class NoteController extends Controller {
 
@@ -55,11 +57,15 @@ class NoteController extends Controller {
 
 		$note = new Note();
 
-		$form = $this->createForm( NoteType::class, $note, [
+		/*$form = $this->createForm( NoteType::class, $note, [
 			'action' => $this->generateUrl( 'post_create' ),
 			'method' => 'post'
-		] );
-		$form->add( 'submit', SubmitType::class, [ 'label' => 'Create' ] );
+		] );*/
+		$form = $this->createFormBuilder()
+		             ->add( 'title', TextType::class )
+		             ->add( 'description', TextareaType::class )
+		             ->add( 'submit', SubmitType::class, [ 'label' => 'Create' ] )
+		             ->getForm();
 
 		$form->handleRequest( $request );
 
@@ -73,7 +79,7 @@ class NoteController extends Controller {
 
 				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Your note has been created' );
 
-				return $this->redirect( $this->generateUrl( 'post_create') );
+				return $this->redirect( $this->generateUrl( 'post_create' ) );
 
 			} else {
 				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Something went wrong' );
