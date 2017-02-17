@@ -56,22 +56,19 @@ class NoteController extends Controller {
 	public function createNoteAction( Request $request ) {
 
 		$note = new Note();
+		$note->setDateCreated( new \DateTime() );
 
-		/*$form = $this->createForm( NoteType::class, $note, [
+		$form = $this->createForm( NoteType::class, $note, [
 			'action' => $this->generateUrl( 'post_create' ),
 			'method' => 'post'
-		] );*/
-		$form = $this->createFormBuilder()
-		             ->add( 'title', TextType::class )
-		             ->add( 'description', TextareaType::class )
-		             ->add( 'submit', SubmitType::class, [ 'label' => 'Create' ] )
-		             ->getForm();
+		] );
+
+		$form->add('submit', SubmitType::class, ['label' => 'Create']);
 
 		$form->handleRequest( $request );
 
 		if ( $form->isSubmitted() ) {
 			if ( $form->isValid() ) {
-				$note->setDateCreated( new \DateTime() );
 
 				$em = $this->getDoctrine()->getManager();
 				$em->persist( $note );
