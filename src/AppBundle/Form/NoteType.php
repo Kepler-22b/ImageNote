@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Note;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,9 +12,9 @@ class NoteType extends AbstractType {
     {
         $builder->add('title')->add('description');
     }
-    public function setDefaultOptions(OptionsResolver $resolver) {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Note'
+            'data_class' => Note::class
         ]);
     }
 }
