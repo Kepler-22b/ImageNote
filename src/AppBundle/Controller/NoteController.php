@@ -19,12 +19,10 @@ class NoteController extends Controller {
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function getNoteAction( $id ) {
-		$post = [
-			'id'    => $id,
-			'title' => 'Post' . $id
-		];
+		$em = $this->getDoctrine()->getManager();
+		$note = $em->getRepository(Note::class)->find($id) ;
 
-		return $this->render( 'AppBundle::post.html.twig', [ 'post' => $post ] );
+		return $this->render( 'AppBundle::post.html.twig', [ 'post' => $note ] );
 	}
 
 
@@ -35,22 +33,10 @@ class NoteController extends Controller {
 	 */
 	public function getNotesAction() {
 
-		$posts = array(
-			[
-				'id'    => 5,
-				'title' => 'Post1'
-			],
-			[
-				'id'    => 15,
-				'title' => 'Post2'
-			],
-			[
-				'id'    => 4,
-				'title' => 'Post3'
-			]
-		);
+		$em = $this->getDoctrine()->getManager();
+		$notes = $em->getRepository(Note::class)->findAll();
 
-		return $this->render( 'AppBundle::posts.html.twig', [ 'posts' => $posts ] );
+		return $this->render( 'AppBundle::posts.html.twig', [ 'posts' => $notes ] );
 	}
 
 	public function createNoteAction( Request $request ) {
