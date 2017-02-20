@@ -43,6 +43,7 @@ class NoteController extends Controller {
 
 		$note = new Note();
 		$note->setDateCreated( new \DateTime() );
+		$note->setDateModified( new \DateTime());
 
 		$form = $this->createForm( NoteType::class, $note, [
 			'action' => $this->generateUrl( 'post_create' ),

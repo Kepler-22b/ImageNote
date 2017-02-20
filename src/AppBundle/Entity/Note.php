@@ -34,6 +34,12 @@ class Note {
 
 
 	/**
+	 * @ORM\Column (type = "datetime", name = "date_modified")
+	 */
+	protected $dateModified;
+
+
+	/**
 	 * @ORM\Column (type = "text")
 	 */
 	protected $description;
@@ -119,5 +125,29 @@ class Note {
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set dateModified
+     *
+     * @param \DateTime $dateModified
+     *
+     * @return Note
+     */
+    public function setDateModified($dateModified)
+    {
+        $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModified
+     *
+     * @return \DateTime
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
     }
 }
