@@ -1,9 +1,9 @@
 {% extends 'AppBundle::index.html.twig' %}
 
 {% block title %}
-    Edit post
+    Edit post #{{ post.id }}
 {% endblock %}
 
 {% block content %}
-    This this the edit post page
+    {{ form(form, {attr: {'novalidate': 'novalidate'}}) }}
 {% endblock %}

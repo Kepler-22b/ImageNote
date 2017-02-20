@@ -90,7 +90,29 @@ class NoteController extends Controller {
 	}
 
 	public function editNoteAction ($id, Request $request) {
-		return $this->render('AppBundle::edit_post.html.twig');
+
+		$em = $this->getDoctrine()->getManager();
+		$note = $em->getRepository(Note::class)->find($id);
+
+		$form = $this->createForm(NoteType::class, $note, [
+			'action' => $this->generateUrl('post_edit', ['id' => $id]),
+			'method' => 'post'
+		]);
+		$form->add('submit', SubmitType::class, ['label' => 'Edit']);
+
+		/*$form->handleRequest( $request );
+		if($form->isSubmitted()) {
+			if($form->isValid()) {
+				$em->flush();
+			}else {
+
+			}
+		}*/
+
+		return $this->render('AppBundle::edit_post.html.twig', [
+			'post' => $note,
+			'form' => $form->createView()
+		]);
 	}
 
 	private function _noteFormHandler() {
