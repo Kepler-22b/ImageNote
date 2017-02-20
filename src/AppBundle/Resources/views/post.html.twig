@@ -6,4 +6,5 @@
 
 {% block content %}
     This is post # {{ post.id }} with title {{ post.title }}
+    <p><a href="{{ path('post_edit', {id: post.id}) }}">Edit Post</a></p>
 {% endblock %}

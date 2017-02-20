@@ -89,6 +89,10 @@ class NoteController extends Controller {
 		] );
 	}
 
+	public function editNoteAction ($id, Request $request) {
+		return $this->render('AppBundle::edit_post.html.twig');
+	}
+
 	private function _noteFormHandler() {
 
 	}
