@@ -5,5 +5,9 @@
 {% endblock %}
 
 {% block content %}
+    {% for flashMessage in app.session.flashbag.get('msg') %}
+        <div>{{ flashMessage }}</div>
+    {% endfor %}
+    <hr>
     {{ form(form, {attr: {'novalidate': 'novalidate'}}) }}
 {% endblock %}

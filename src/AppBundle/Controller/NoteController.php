@@ -86,14 +86,15 @@ class NoteController extends Controller {
 		]);
 		$form->add('submit', SubmitType::class, ['label' => 'Edit']);
 
-		/*$form->handleRequest( $request );
+		$form->handleRequest( $request );
 		if($form->isSubmitted()) {
 			if($form->isValid()) {
 				$em->flush();
+				$this->get('session')->getFlashBag()->add('msg', 'Note has been updated');
 			}else {
-
+				$this->get('session')->getFlasBag()->add('msg', 'Something wend wrong');
 			}
-		}*/
+		}
 
 		return $this->render('AppBundle::edit_post.html.twig', [
 			'post' => $note,
