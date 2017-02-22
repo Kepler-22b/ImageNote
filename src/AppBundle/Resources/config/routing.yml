@@ -19,3 +19,8 @@ post_edit:
   path: /edit/{id}
   defaults: { _controller: AppBundle:Note:editNote}
   requirements: { _method: post }
+
+post_delete:
+  path: /delete/{id}
+  defaults: { _controller: AppBundle:Note:deleteNote}
+  requirements: { _method: post|delete}

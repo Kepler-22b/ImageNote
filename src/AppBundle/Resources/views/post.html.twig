@@ -6,5 +6,12 @@
 
 {% block content %}
     This is post # {{ post.id }} with title {{ post.title }}
-    <p><a href="{{ path('post_edit', {id: post.id}) }}">Edit Post</a></p>
+    <ul>
+        <li><a href="{{ path('post_edit', {id: post.id}) }}">Edit Post</a></li>
+        <li>
+            {{ form_start(deleteForm) }}
+            {{ form_widget(deleteForm.submit) }}
+            {{ form_end(deleteForm) }}
+        </li>
+    </ul>
 {% endblock %}
