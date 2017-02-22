@@ -92,8 +92,9 @@ class NoteController extends Controller {
 			if($form->isValid()) {
 				$em->flush();
 				$this->get('session')->getFlashBag()->add('msg', 'Note has been updated');
+				return $this->redirect($this->generateUrl('post', ['id' => $id]));
 			}else {
-				$this->get('session')->getFlasBag()->add('msg', 'Something wend wrong');
+				$this->get('session')->getFlashBag()->add('msg', 'Something wend wrong');
 			}
 		}
 
