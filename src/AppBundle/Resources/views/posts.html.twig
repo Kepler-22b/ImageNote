@@ -6,8 +6,10 @@
 
 {% block content %}
     <ul>
-    {% for post in posts %}
-        <li><a href="{{ path('post', {id: post.id}) }}">{{ post.title }} #{{ post.id }}</a></li>
-    {% endfor %}
+        {% for post in posts %}
+            <li><a href="{{ path('post', {id: post.id}) }}">{{ post.title }} #{{ post.id }}</a></li>
+        {% else %}
+            <p>No posts added. <a href="{{ path('post_create') }}">Add new post</a></p>
+        {% endfor %}
     </ul>
 {% endblock %}
