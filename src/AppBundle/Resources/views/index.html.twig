@@ -6,19 +6,38 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image CMS Notes</title>
+    <link rel="stylesheet" href="https://unpkg.com/blaze">
+    <link rel="stylesheet" href="https://unpkg.com/blaze/dist/blaze.colors.min.css">
 </head>
-<body>
 
-{{ include("AppBundle::navs/main_nav.html.twig") }}
+<body class="c-text">
+<main class="o-grid o-grid--no-gutter o-panel">
+    <div class="o-grid__cell--width-15 o-panel-container">
+        {{ include('AppBundle::navs/posts_nav.html.twig') }}
+    </div>
+    <div class="o-grid__cell--width-85 o-panel-container">
+        {{ include("AppBundle::navs/main_nav.html.twig") }}
+        <div class="o-panel o-panel--nav-top u-pillar-box--large">
 
-<h1>{% block title %}Image CMS Notes{% endblock title %}</h1>
+            <h1 class="c-heading">
+                {% block title %}Image CMS Notes{% endblock title %}
+            </h1>
 
-{% for flashMessage in app.session.flashbag.get('msg') %}
-    <div>{{ flashMessage }}</div>
-{% endfor %}
+            {% for flashMessage in app.session.flashbag.get('msg') %}
+                {{ flashMessage }}
+            {% endfor %}
 
-{% block content %}
-    <p>Homepage</p>
-{% endblock %}
+            {% block content %}
+                <p class="c-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio nulla quia repellendus saepe
+                    tempore unde voluptas. Culpa distinctio ea est fugiat iure, magnam nam, necessitatibus nihil odit,
+                    quidem unde velit.
+                </p>
+            {% endblock %}
+
+        </div>
+    </div>
+</main>
+
 </body>
+
 </html>
