@@ -1,19 +1,17 @@
 {% extends 'AppBundle::index.html.twig' %}
-{% form_theme form.title 'AppBundle::forms/input.html.twig' %}
-{% form_theme form.description 'AppBundle::forms/area.html.twig' %}
+{% form_theme form 'AppBundle::forms/input.html.twig' %}
 
 {% block title %}
     Add new post
 {% endblock %}
 
 {% block content %}
-    <hr>
-    {{ form_start(form, {attr: {"novalidate": "novalidate"}}) }}
-    {{ form_errors(form) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.description) }}
-    <div class="form_row">
-    {{ form_widget(form.submit, { 'label': 'Click me' }) }}
+    <div class="u-letter-box--medium">
+        {{ form_start(form, {attr: {"novalidate": "novalidate"}}) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_widget(form.submit, { 'label': 'Click me' }) }}
+        {{ form_end(form) }}
     </div>
-    {{ form_end(form) }}
 {% endblock %}

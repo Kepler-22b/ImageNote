@@ -1,7 +1,7 @@
 {% block form_row %}
-    <div class="form_row">
-        {{ form_label(form) }}
+    <div class="o-form-element">
+        {{ form_label(form, null, {label_attr: {class: "c-label"}}) }}
+        {{ form_widget(form, {attr: {rows: '12', cols: '60', class: "c-field"}}) }}
         {{ form_errors(form) }}
-        {{ form_widget(form, {attr: {class: 'area'}}) }}
     </div>
 {% endblock form_row %}

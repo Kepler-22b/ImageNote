@@ -1,10 +1,12 @@
 {% extends 'AppBundle::index.html.twig' %}
+{% form_theme form 'AppBundle::forms/input.html.twig' %}
 
 {% block title %}
-    Edit post #{{ post.id }}
+    Edit post <q class="c-text--quiet">{{ post.title }}</q>
 {% endblock %}
 
 {% block content %}
-    <hr>
-    {{ form(form, {attr: {'novalidate': 'novalidate'}}) }}
+    <div class="u-letter-box--medium">
+        {{ form(form, {attr: {'novalidate': 'novalidate'}}) }}
+    </div>
 {% endblock %}
