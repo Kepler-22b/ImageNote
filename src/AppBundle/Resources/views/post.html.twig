@@ -5,12 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    This is post # {{ post.id }} with title {{ post.title }}
-    <ul>
-        <li><a href="{{ path('post_edit', {id: post.id}) }}">Edit Post</a></li>
-        <li>
+    <div class="c-text--quiet">
+        {{ post.dateCreated|date("d F Y") }}<br>
+    </div>
+    <p class="c-paragraph">
+        {{ post.description }}
+    </p>
+    <ul class="c-list c-list--inline c-list--unstyled u-letter-box--large">
+        <li class="c-list__item"><a href="{{ path('post_edit', {id: post.id}) }}" class="c-button c-button--info">Edit Post</a></li>
+        <li class="c-list__item">
             {{ form_start(deleteForm) }}
-            {{ form_widget(deleteForm.submit) }}
+            {{ form_widget(deleteForm.submit, {"attr": {"class": "c-button c-button--error"}}) }}
             {{ form_end(deleteForm) }}
         </li>
     </ul>
