@@ -7,6 +7,11 @@
 
 {% block content %}
     <div class="u-letter-box--medium">
-        {{ form(form, {attr: {'novalidate': 'novalidate'}}) }}
+        {{ form_start(form, {attr: {"novalidate": "novalidate"}}) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description, {attr: {rows: '12', cols: '60'}}) }}
+        {{ form_widget(form.submit, { "attr": {"class": "c-button c-button--success"}}) }}
+        {{ form_end(form) }}
     </div>
 {% endblock %}
