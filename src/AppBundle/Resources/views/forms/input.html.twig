@@ -1,7 +1,10 @@
 {% block form_row %}
+    {% set fieldErrorClass = (errors|length > 0) ? "c-field--error" : "" %}
     <div class="o-form-element">
         {{ form_label(form, null, {label_attr: {class: "c-label"}}) }}
-        {{ form_widget(form, {"attr": {"class": "c-field"}}) }}
-        {{ form_errors(form) }}
+        {{ form_widget(form, {"attr": {"class": "c-field " ~ fieldErrorClass}}) }}
+        {% for error in errors %}
+            <span class="u-color-red u-small">{{ error.message }}</span>
+        {% endfor %}
     </div>
 {% endblock form_row %}
