@@ -66,12 +66,12 @@ class NoteController extends Controller {
 				$em->persist( $note );
 				$em->flush();
 
-				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Your note has been created' );
+				$this->get( 'session' )->getFlashBag()->add( 'success', 'Your note has been created' );
 
 				return $this->redirect( $this->generateUrl( 'post_create' ) );
 
 			} else {
-				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Something went wrong' );
+				$this->get( 'session' )->getFlashBag()->add( 'error', 'Something went wrong' );
 			}
 		}
 
@@ -96,11 +96,11 @@ class NoteController extends Controller {
 		if ( $form->isSubmitted() ) {
 			if ( $form->isValid() ) {
 				$em->flush();
-				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Note has been updated' );
+				$this->get( 'session' )->getFlashBag()->add( 'success', 'Note has been updated' );
 
 				return $this->redirect( $this->generateUrl( 'post', [ 'id' => $id ] ) );
 			} else {
-				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Something wend wrong' );
+				$this->get( 'session' )->getFlashBag()->add( 'error', 'Something wend wrong' );
 			}
 		}
 
@@ -122,11 +122,11 @@ class NoteController extends Controller {
 			if ( $form->isValid() ) {
 				$em->remove( $note );
 				$em->flush();
-				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Note has been deleted' );
+				$this->get( 'session' )->getFlashBag()->add( 'success', 'Note has been deleted' );
 
 				return $this->redirect( $this->generateUrl( 'posts' ) );
 			} else {
-				$this->get( 'session' )->getFlashBag()->add( 'msg', 'Something wend wrong' );
+				$this->get( 'session' )->getFlashBag()->add( 'error', 'Something wend wrong' );
 			}
 		}
 
