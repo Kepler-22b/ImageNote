@@ -23,14 +23,7 @@
                 {% block title %}Image CMS Notes{% endblock title %}
             </h1>
 
-            {% set flashMessages = app.session.flashbag.get('msg') %}
-            {% if flashMessages %}
-                <div class="c-alert c-alert--error">
-                    {% for flashMessage in flashMessages %}
-                        {{ flashMessage }}
-                    {% endfor %}
-                </div>
-            {% endif %}
+            {{ include( "AppBundle::includes/flash_message.html.twig", {"messages": app.session.flashbag.all()} ) }}
 
 
             {% block content %}
@@ -44,7 +37,5 @@
         </div>
     </div>
 </main>
-
 </body>
-
 </html>
