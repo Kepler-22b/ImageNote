@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Image CMS Notes</title>
+    <title>{% block title %}Image CMS Notes{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/blaze">
     <link rel="stylesheet" href="https://unpkg.com/blaze/dist/blaze.colors.min.css">
 </head>
@@ -20,7 +20,7 @@
         <div class="o-panel o-panel--nav-top u-pillar-box--large u-letter-box--large">
 
             <h1 class="c-heading u-window-box--none">
-                {% block title %}Image CMS Notes{% endblock title %}
+                {% block heading %}Image CMS Notes{% endblock heading %}
             </h1>
 
             {{ include( "AppBundle::includes/flash_message.html.twig", {"messages": app.session.flashbag.all()} ) }}

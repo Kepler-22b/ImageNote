@@ -2,6 +2,10 @@
 {% form_theme form 'AppBundle::forms/input.html.twig' %}
 
 {% block title %}
+    {{ parent() }} / Create post
+{% endblock %}
+
+{% block heading %}
     Add new post
 {% endblock %}
 

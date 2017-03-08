@@ -2,6 +2,10 @@
 {% form_theme form 'AppBundle::forms/input.html.twig' %}
 
 {% block title %}
+    {{ parent() }} / Edit post
+{% endblock %}
+
+{% block heading %}
     Edit post <q class="c-text--quiet">{{ post.title }}</q>
 {% endblock %}
 

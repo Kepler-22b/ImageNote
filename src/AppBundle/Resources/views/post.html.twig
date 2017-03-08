@@ -1,6 +1,10 @@
 {% extends 'AppBundle::index.html.twig' %}
 
 {% block title %}
+    {{ parent() }} / {{ post.title }}
+{% endblock %}
+
+{% block heading %}
     {{ post.title }}
 {% endblock %}
 
