@@ -9,6 +9,7 @@ posts:
 post:
   path: /posts/{id}
   defaults: { _controller: AppBundle:Note:getNote }
+  requirements: { id: \d+ }
 
 post_create:
   path: /create
@@ -18,7 +19,7 @@ post_create:
 post_edit:
   path: /edit/{id}
   defaults: { _controller: AppBundle:Note:editNote}
-  requirements: { _method: post }
+  requirements: { _method: post, id: \d+ }
 
 post_delete:
   path: /delete/{id}

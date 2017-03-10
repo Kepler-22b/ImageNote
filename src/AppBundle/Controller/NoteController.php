@@ -22,6 +22,10 @@ class NoteController extends Controller {
 		$em   = $this->getDoctrine()->getManager();
 		$note = $em->getRepository( Note::class )->find( $id );
 
+		if (!$note) {
+			throw $this->createNotFoundException('Unable to find Blog post.');
+		}
+
 		$deleteForm = $this->_deleteForm( $id );
 
 		return $this->render( 'AppBundle::post.html.twig', [
