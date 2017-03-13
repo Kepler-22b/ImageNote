@@ -1,0 +1,19 @@
+<div class="o-grid o-grid--wrap">
+    {% for post in latestPosts %}
+        <div class="o-grid__cell o-grid__cell--width-33 u-letter-box--medium">
+            <div class="c-card">
+                <div class="c-card__item o-media">
+                    {#<div class="o-media__image o-media__image--bottom">
+                        <img class="o-image" src="https://placehold.it/80">
+                    </div>#}
+                    <div class="o-media__body">
+                        <h2 class="c-heading"><a class="c-link" href="{{ path("post", {"id": post.id}) }}">{{ post.title }}</a> <span class="c-heading__sub">{{ post.dateCreated|date("d F Y") }}</span></h2>
+                        <p class="c-paragraph">{{ post.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p class="c-paragraph">No latest posts</p>
+    {% endfor %}
+</div>

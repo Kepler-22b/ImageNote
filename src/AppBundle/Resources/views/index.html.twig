@@ -32,7 +32,7 @@
                     tempore unde voluptas. Culpa distinctio ea est fugiat iure, magnam nam, necessitatibus nihil odit,
                     quidem unde velit.
                 </p>
-                {{ dump(latestPosts) }}
+                {{ include("AppBundle::includes/latest_posts.html.twig", {"latestPosts": latestPosts}) }}
             {% endblock %}
 
         </div>

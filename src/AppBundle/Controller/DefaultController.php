@@ -10,13 +10,15 @@ class DefaultController extends Controller {
 	public function indexAction() {
 		$em = $this->getDoctrine()->getManager();
 
-		$latestPosts = $em->createQueryBuilder()
-			->select("u")
-			->from(Note::class, "u")
-			->addOrderBy("u.dateCreated", "DESC")
-			->getQuery()
-			->getResult();
+		$qb = $em->createQueryBuilder();
 
-		return $this->render( "AppBundle::index.html.twig", ["latestPosts" => $latestPosts] );
+		$latestPosts = $qb->select( "note" )
+		                  ->from( Note::class, "note" )
+		                  ->addOrderBy( "note.dateCreated", "DESC" )
+		                  ->setMaxResults(6)
+		                  ->getQuery()
+		                  ->getResult();
+
+		return $this->render( "AppBundle::index.html.twig", [ "latestPosts" => $latestPosts ] );
 	}
 }
