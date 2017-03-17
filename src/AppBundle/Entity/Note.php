@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table (name = "note")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\NoteRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Note {
 
@@ -46,109 +47,113 @@ class Note {
 	protected $description;
 
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	public function __construct() {
+		$this->setDateCreated( new \DateTime() );
+		$this->setDateModified( new \DateTime() );
+	}
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Note
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
+	/**
+	 * @ORM\PreUpdate
+	 */
+	public function setUpdatedValue() {
+		$this->setDateModified( new \DateTime() );
+	}
 
-        return $this;
-    }
 
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+	/**
+	 * Get id
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
-    /**
-     * Set dateCreated
-     *
-     * @param \DateTime $dateCreated
-     *
-     * @return Note
-     */
-    public function setDateCreated($dateCreated)
-    {
-        $this->dateCreated = $dateCreated;
+	/**
+	 * Set title
+	 *
+	 * @param string $title
+	 *
+	 * @return Note
+	 */
+	public function setTitle( $title ) {
+		$this->title = $title;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get dateCreated
-     *
-     * @return \DateTime
-     */
-    public function getDateCreated()
-    {
-        return $this->dateCreated;
-    }
+	/**
+	 * Get title
+	 *
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Note
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
+	/**
+	 * Set dateCreated
+	 *
+	 * @param \DateTime $dateCreated
+	 *
+	 * @return Note
+	 */
+	public function setDateCreated( $dateCreated ) {
+		$this->dateCreated = $dateCreated;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
+	/**
+	 * Get dateCreated
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateCreated() {
+		return $this->dateCreated;
+	}
 
-    /**
-     * Set dateModified
-     *
-     * @param \DateTime $dateModified
-     *
-     * @return Note
-     */
-    public function setDateModified($dateModified)
-    {
-        $this->dateModified = $dateModified;
+	/**
+	 * Set description
+	 *
+	 * @param string $description
+	 *
+	 * @return Note
+	 */
+	public function setDescription( $description ) {
+		$this->description = $description;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get dateModified
-     *
-     * @return \DateTime
-     */
-    public function getDateModified()
-    {
-        return $this->dateModified;
-    }
+	/**
+	 * Get description
+	 *
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+	/**
+	 * Set dateModified
+	 *
+	 * @param \DateTime $dateModified
+	 *
+	 * @return Note
+	 */
+	public function setDateModified( $dateModified ) {
+		$this->dateModified = $dateModified;
+
+		return $this;
+	}
+
+	/**
+	 * Get dateModified
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateModified() {
+		return $this->dateModified;
+	}
 }

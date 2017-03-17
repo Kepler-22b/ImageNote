@@ -52,8 +52,6 @@ class NoteController extends Controller {
 	public function createNoteAction( Request $request ) {
 
 		$note = new Note();
-		$note->setDateCreated( new \DateTime() );
-		$note->setDateModified( new \DateTime() );
 
 		$form = $this->createForm( NoteType::class, $note, [
 			'action' => $this->generateUrl( 'post_create' ),
@@ -90,7 +88,6 @@ class NoteController extends Controller {
 
 		$em   = $this->getDoctrine()->getManager();
 		$note = $em->getRepository( Note::class )->find( $id );
-		$note->setDateModified( new \DateTime() );
 
 		$form = $this->createForm( NoteType::class, $note, [
 			'action' => $this->generateUrl( 'post_edit', [ 'id' => $id ] ),
