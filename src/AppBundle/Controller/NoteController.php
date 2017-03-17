@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class NoteController extends Controller {
 
@@ -89,6 +90,7 @@ class NoteController extends Controller {
 
 		$em   = $this->getDoctrine()->getManager();
 		$note = $em->getRepository( Note::class )->find( $id );
+		$note->setDateModified( new \DateTime() );
 
 		$form = $this->createForm( NoteType::class, $note, [
 			'action' => $this->generateUrl( 'post_edit', [ 'id' => $id ] ),
