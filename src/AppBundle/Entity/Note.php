@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -50,6 +51,8 @@ class Note {
 
 
 	public function __construct() {
+		$this->comments = new ArrayCollection();
+
 		$this->setDateCreated( new \DateTime() );
 		$this->setDateModified( new \DateTime() );
 	}
@@ -59,6 +62,11 @@ class Note {
 	 */
 	public function setUpdatedValue() {
 		$this->setDateModified( new \DateTime() );
+	}
+
+	public function __toString()
+	{
+		return $this->getTitle();
 	}
 
 
@@ -158,4 +166,38 @@ class Note {
 	public function getDateModified() {
 		return $this->dateModified;
 	}
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comments $comment
+     *
+     * @return Note
+     */
+    public function addComment(\AppBundle\Entity\Comments $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comments $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comments $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

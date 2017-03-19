@@ -9,6 +9,7 @@ namespace AppBundle\Entity\Repository;
  * repository methods below.
  */
 class NoteRepository extends \Doctrine\ORM\EntityRepository {
+
 	public function getLatestPosts( $limit = null ) {
 
 		return $this->createQueryBuilder( "note" )

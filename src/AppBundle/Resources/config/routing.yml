@@ -25,3 +25,8 @@ post_delete:
   path: /delete/{id}
   defaults: { _controller: AppBundle:Note:deleteNote}
   requirements: { _method: post|delete}
+
+comment_create:
+  path:  /comment/{noteId}
+  defaults: { _controller: AppBundle:Comments:create }
+  requirements: { _method: post, id: \d+}

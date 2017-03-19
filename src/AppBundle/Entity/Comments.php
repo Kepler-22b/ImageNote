@@ -19,11 +19,6 @@ class Comments {
 	protected $id;
 
 	/**
-	 * @ORM\Column (type = "string")
-	 */
-	protected $title;
-
-	/**
 	 * @ORM\Column (type = "text" )
 	 */
 	protected $comment;
@@ -57,6 +52,7 @@ class Comments {
 	public function __construct() {
 		$this->setDateCreated( new \DateTime());
 		$this->setDateUpdated( new \DateTime());
+		$this->setApproved(true);
 	}
 
 	/**
@@ -74,30 +70,6 @@ class Comments {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Comments
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -218,5 +190,29 @@ class Comments {
     public function getDateUpdated()
     {
         return $this->dateUpdated;
+    }
+
+    /**
+     * Set note
+     *
+     * @param \AppBundle\Entity\Note $note
+     *
+     * @return Comments
+     */
+    public function setNote(\AppBundle\Entity\Note $note = null)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return \AppBundle\Entity\Note
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 }

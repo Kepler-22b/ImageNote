@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comments;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Note;
 use AppBundle\Form\NoteType;
@@ -29,9 +30,12 @@ class NoteController extends Controller {
 
 		$deleteForm = $this->_deleteForm( $id );
 
+		$comments = $em->getRepository(Comments::class)->getComments($note->getId());
+
 		return $this->render( 'AppBundle::post.html.twig', [
 			'post'       => $note,
-			'deleteForm' => $deleteForm->createView()
+			'deleteForm' => $deleteForm->createView(),
+			'comments' => $comments
 		] );
 	}
 

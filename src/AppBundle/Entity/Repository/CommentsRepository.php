@@ -10,4 +10,17 @@ namespace AppBundle\Entity\Repository;
  */
 class CommentsRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getComments($noteId, $approved = true)
+	{
+		$qb = $this->createQueryBuilder('c')
+		           ->select('c')
+		           ->where('c.note = :note_id')
+		           ->addOrderBy('c.dateCreated')
+		           ->setParameter('note_id', $noteId);
+
+		if (false === is_null($approved))
+			$qb->andWhere('c.approved = :approved')->setParameter('approved', $approved);
+
+		return $qb->getQuery()->getResult();
+	}
 }
