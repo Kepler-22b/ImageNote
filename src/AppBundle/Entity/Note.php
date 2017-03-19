@@ -20,7 +20,6 @@ class Note {
 	 */
 	protected $id;
 
-
 	/**
 	 * @ORM\Column
 	 * @Assert\NotBlank()
@@ -28,6 +27,12 @@ class Note {
 	 */
 	protected $title;
 
+	/**
+	 * @ORM\Column (type = "text", nullable = true)
+	 */
+	protected $description;
+
+	protected $comments;
 
 	/**
 	 * @ORM\Column (type = "datetime", name = "date_created")
@@ -39,12 +44,6 @@ class Note {
 	 * @ORM\Column (type = "datetime", name = "date_modified")
 	 */
 	protected $dateModified;
-
-
-	/**
-	 * @ORM\Column (type = "text", nullable = true)
-	 */
-	protected $description;
 
 
 	public function __construct() {
