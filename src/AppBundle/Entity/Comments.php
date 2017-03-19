@@ -38,6 +38,10 @@ class Comments {
 	 */
 	protected $approved;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Note", inversedBy="comments")
+	 * @ORM\JoinColumn(name="note_id", referencedColumnName="id")
+	 */
 	protected $note;
 
 	/**
@@ -50,7 +54,19 @@ class Comments {
 	 */
 	protected $dateUpdated;
 
-    /**
+	public function __construct() {
+		$this->setDateCreated( new \DateTime());
+		$this->setDateUpdated( new \DateTime());
+	}
+
+	/**
+	 * @ORM\PreUpdate
+	 */
+	public function setUpdatedValue() {
+		$this->setDateUpdated( new \DateTime());
+	}
+
+	/**
      * Get id
      *
      * @return integer

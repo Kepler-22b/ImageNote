@@ -32,6 +32,9 @@ class Note {
 	 */
 	protected $description;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Comments", mappedBy="note")
+	 */
 	protected $comments;
 
 	/**
